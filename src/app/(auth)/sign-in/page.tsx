@@ -1,4 +1,3 @@
-import { redirect } from "next/navigation";
 import {
   Card,
   CardContent,
@@ -6,12 +5,11 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { getSession } from "@/lib/auth-helpers";
+import { requireGuest } from "@/lib/auth-guards";
 import { SignInForm } from "./sign-in-form";
 
 export default async function SignInPage() {
-  const session = await getSession();
-  if (session) redirect("/");
+  await requireGuest();
 
   return (
     <main className="flex min-h-svh items-center justify-center px-4 py-12">
@@ -19,7 +17,7 @@ export default async function SignInPage() {
         <CardHeader>
           <CardTitle>Connexion</CardTitle>
           <CardDescription>
-            Reçois un lien magique par email pour te connecter.
+            Connecte-toi avec ton email et ton mot de passe.
           </CardDescription>
         </CardHeader>
         <CardContent>

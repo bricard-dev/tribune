@@ -2,12 +2,14 @@
 // Domain: World Cup pronostics pool (48 teams / 12 groups of 4 / KO bracket)
 
 generator client {
-  provider = "prisma-client"
-  output   = "../src/generated/prisma"
+  provider        = "prisma-client"
+  output          = "../src/generated/prisma"
+  previewFeatures = ["postgresqlExtensions"]
 }
 
 datasource db {
-  provider = "postgresql"
+  provider   = "postgresql"
+  extensions = [citext]
 }
 
 enum Role {
@@ -37,9 +39,8 @@ enum MatchStatus {
 model User {
   id            String  @id
   email         String  @unique
-  name          String
-  username      String? @unique
-  onboarded     Boolean @default(false)
+  name          String?
+  username      String  @unique @db.Citext
   emailVerified Boolean @default(false)
   image         String?
   role          Role    @default(USER)
