@@ -18,19 +18,22 @@ const envSchema = z.object({
   UPSTASH_REDIS_REST_URL: z.url().optional(),
   UPSTASH_REDIS_REST_TOKEN: z.string().min(1).optional(),
 }).superRefine((data, ctx) => {
-  if (data.NODE_ENV !== 'development') {
+  // Required on Vercel production (Marketplace auto-injects them).
+  // Local builds, dev, and preview tolerate their absence — the rate limiter
+  // and secondary storage fall back to no-op / memory.
+  if (data.VERCEL_ENV === 'production') {
     if (!data.UPSTASH_REDIS_REST_URL) {
       ctx.addIssue({
         code: 'custom',
         path: ['UPSTASH_REDIS_REST_URL'],
-        message: 'UPSTASH_REDIS_REST_URL is required outside of development',
+        message: 'UPSTASH_REDIS_REST_URL is required in production',
       });
     }
     if (!data.UPSTASH_REDIS_REST_TOKEN) {
       ctx.addIssue({
         code: 'custom',
         path: ['UPSTASH_REDIS_REST_TOKEN'],
-        message: 'UPSTASH_REDIS_REST_TOKEN is required outside of development',
+        message: 'UPSTASH_REDIS_REST_TOKEN is required in production',
       });
     }
   }

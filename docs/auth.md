@@ -387,8 +387,8 @@ Validation dans `src/env.ts` (Zod + `superRefine` pour les contraintes condition
 | `BETTER_AUTH_URL` | toujours | URL canonique de l'app |
 | `RESEND_API_KEY` | toujours | Clé Resend |
 | `RESEND_FROM_EMAIL` | toujours | Doit être vérifié sur un domaine Resend |
-| `UPSTASH_REDIS_REST_URL` | hors dev | Auto-injecté par Marketplace Vercel |
-| `UPSTASH_REDIS_REST_TOKEN` | hors dev | idem |
+| `UPSTASH_REDIS_REST_URL` | en prod Vercel | Auto-injecté par Marketplace Vercel ; tolérée absente en build local / preview |
+| `UPSTASH_REDIS_REST_TOKEN` | en prod Vercel | idem |
 | `VERCEL_ENV`, `VERCEL_URL` | injecté | Utilisés pour `baseURL` en preview |
 
 **Toujours importer via `@/env`**, jamais `process.env` directement.
