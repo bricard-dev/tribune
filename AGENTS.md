@@ -40,7 +40,7 @@ This version has breaking changes — APIs, conventions, and file structure may 
 - **Package manager** : pnpm
 - **Base de données** : PostgreSQL (Neon) via Prisma 7 (`@prisma/adapter-pg`) — schéma dans `prisma/schema.prisma`, client généré dans `src/generated/prisma` (⚠️ **ne pas** laisser dans `src/app/` : risque de collision avec le routing Next.js)
 - **Tests** : Vitest, fichiers `*.test.ts` colocalisés à côté du code. Obligatoires pour la logique métier critique (ex. `lib/scoring.ts`).
-- **Auth** : `better-auth`
+- **Auth** : `better-auth` — architecture, flows, rate limit et guards détaillés dans [`docs/auth.md`](./docs/auth.md)
 - **Email** : Resend
 - **UI** : shadcn/ui (style `radix-nova`, RSC activé) + Tailwind CSS v4 + Radix UI + icônes Lucide
 - **Lint** : ESLint 9 (`eslint-config-next`)

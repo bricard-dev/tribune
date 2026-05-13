@@ -35,3 +35,11 @@ jobs:
       - run: pnpm test --run
 
       - run: pnpm build
+        env:
+          # Placeholders to satisfy env validation during static build.
+          # No network calls happen — these never touch real services.
+          DATABASE_URL: postgres://ci:ci@localhost:5432/ci
+          BETTER_AUTH_SECRET: ci-placeholder-secret-min-32-characters-long
+          BETTER_AUTH_URL: http://localhost:3000
+          RESEND_API_KEY: ci-placeholder
+          RESEND_FROM_EMAIL: ci@example.com
