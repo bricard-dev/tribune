@@ -92,6 +92,13 @@ Alias d'import configurés : `@/components`, `@/components/ui`, `@/lib`, `@/lib/
 - **Composants UI** : ajouter via `pnpm dlx shadcn@latest add <component>` plutôt que de copier à la main ; les primitives vont dans `src/components/ui/`.
 - **Styling** : Tailwind v4 (config dans `src/app/globals.css`), `cn()` depuis `@/lib/utils` pour combiner classes, `class-variance-authority` pour les variants de composants.
 
+### Contenu statique des pages
+
+- **Extraire le contenu d'une page dans un `content.ts` colocalisé** dès qu'on a une liste mappée (`.map()`) ou un `Record<Enum, string>` de libellés. Ex. `src/app/(public)/rules/content.ts`, `src/app/(public)/matches/content.ts`.
+- Le `content.ts` exporte des données **typées** (`export const items: Item[] = [...]`). La page n'importe que ce dont elle a besoin et reste centrée sur le rendu.
+- Ne **pas** extraire si la page n'a que des chaînes littérales en JSX sans liste : pas de bénéfice, juste de l'indirection.
+- Ne **pas** extraire en composant tant que la card/le bloc n'est utilisé qu'à un seul endroit. On extrait quand le même pattern apparaît sur ≥ 2 pages, ou quand le bloc gagne sa propre logique (variants, état, props complexes).
+
 ### Server Actions
 
 - **Validation** : zod en tout début d'action sur toutes les entrées (FormData incluse).
@@ -102,6 +109,16 @@ Alias d'import configurés : `@/components`, `@/components/ui`, `@/lib`, `@/lib/
   - streaming SSE
   - endpoints publics consommés par des tiers
   - uploads `FormData` complexes (multipart streaming, fichiers volumineux)
+
+### Animations (motion)
+
+- **Librairie** : [`motion`](https://motion.dev) (anciennement Framer Motion). Importer depuis `motion/react`.
+- **Provider global** : `MotionProvider` (`src/app/(public)/motion-provider.tsx`) enveloppe les layouts qui en ont besoin et configure `<MotionConfig reducedMotion="user">` — respecte `prefers-reduced-motion` côté OS sans code supplémentaire dans chaque composant.
+- **Composants animés = Client Components feuilles.** Garder l'animation dans un petit fichier `"use client"` colocalisé (ex. `rules/timeline.tsx`, `rules/count-up.tsx`) et l'importer depuis une page RSC. Ne **pas** marquer toute une page `"use client"` pour une animation locale.
+- **Easing par défaut** : `[0.22, 1, 0.36, 1]` (ease-out cubic). Réutiliser la même courbe d'un composant à l'autre pour garder une sensation cohérente.
+- **Apparitions au scroll** : préférer `whileInView` + `viewport={{ once: true, amount: 0.25 }}` plutôt qu'un `IntersectionObserver` manuel. `once: true` évite de rejouer à chaque passage.
+- **Valeurs animées impératives** (compteurs, etc.) : utiliser `useMotionValue` + `animate()` dans un `useEffect`, et retourner le `cleanup` (`controls.stop()`) pour annuler si le composant démonte.
+- **Pas d'animation sans raison** : si un effet n'apporte rien à la lecture (juste un fade gratuit sur tout), s'en passer. L'animation doit guider l'œil ou révéler une structure.
 
 ### Accessibilité
 

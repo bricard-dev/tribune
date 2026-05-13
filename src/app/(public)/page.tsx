@@ -1,8 +1,8 @@
 import { Section } from '@/components/section';
 import { Button } from '@/components/ui/button';
 import { getCurrentUser } from '@/lib/auth-helpers';
-import Image from 'next/image';
 import Link from 'next/link';
+import { HeroSlideshow } from './hero-slideshow';
 
 export default async function HomePage() {
   const user = await getCurrentUser();
@@ -39,16 +39,7 @@ export default async function HomePage() {
           </div>
         </div>
 
-        <div className="relative aspect-4/5 w-full overflow-hidden rounded-lg bg-muted">
-          <Image
-            src="/tribune-1.jpg"
-            alt=""
-            fill
-            sizes="(min-width: 768px) 50vw, 100vw"
-            className="object-cover"
-            priority
-          />
-        </div>
+        <HeroSlideshow images={['/tribune-1.jpg', '/tribune-2.jpg']} />
       </div>
     </Section>
   );

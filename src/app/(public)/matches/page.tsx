@@ -2,28 +2,11 @@ import type { Metadata } from 'next';
 import { Section } from '@/components/section';
 import { Separator } from '@/components/ui/separator';
 import { prisma } from '@/lib/prisma';
-import type { MatchStatus, Phase } from '@/generated/prisma/client';
+import { PHASE_LABEL, STATUS_LABEL } from './content';
 
 export const metadata: Metadata = {
   title: 'Matches — Tribune',
   description: 'Calendrier complet des matches de la compétition.',
-};
-
-const PHASE_LABEL: Record<Phase, string> = {
-  GROUP: 'Phase de groupes',
-  ROUND_OF_32: '16es de finale',
-  ROUND_OF_16: '8es de finale',
-  QUARTER_FINAL: 'Quarts de finale',
-  SEMI_FINAL: 'Demi-finales',
-  THIRD_PLACE: 'Match pour la 3e place',
-  FINAL: 'Finale',
-};
-
-const STATUS_LABEL: Record<MatchStatus, string> = {
-  SCHEDULED: 'À venir',
-  LIVE: 'En direct',
-  FINISHED: 'Terminé',
-  CANCELLED: 'Annulé',
 };
 
 const dayFormatter = new Intl.DateTimeFormat('fr-FR', {
@@ -72,17 +55,21 @@ export default async function MatchesPage() {
 
   return (
     <>
-      <Section aria-labelledby="matches-title" className="pb-8 pt-16 md:pt-20">
-        <h1
-          id="matches-title"
-          className="font-serif text-4xl leading-tight tracking-tight md:text-5xl"
-        >
-          Calendrier des matches
-        </h1>
-        <p className="mt-4 max-w-2xl text-lg text-muted-foreground">
-          Tous les matches de la compétition, de la phase de groupes à la
-          finale. Horaires affichés en heure de Paris.
-        </p>
+      <Section aria-labelledby="matches-title" className="pb-16 pt-20 md:pt-24">
+        <div className="mx-auto max-w-3xl text-center">
+          <h1
+            id="matches-title"
+            className="font-serif text-5xl leading-[1.05] tracking-tight md:text-7xl"
+          >
+            Calendrier des matches
+          </h1>
+          <p className="mx-auto mt-6 max-w-3xl text-lg text-muted-foreground">
+            Tous les matches de la compétition, de la phase de groupes à la
+            finale.
+            <br />
+            Horaires affichés en heure de Paris.
+          </p>
+        </div>
       </Section>
 
       <Separator />

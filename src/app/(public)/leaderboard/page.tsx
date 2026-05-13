@@ -55,18 +55,21 @@ export default async function LeaderboardPage() {
     <>
       <Section
         aria-labelledby="leaderboard-title"
-        className="pb-8 pt-16 md:pt-20"
+        className="pb-16 pt-20 md:pt-24"
       >
-        <h1
-          id="leaderboard-title"
-          className="font-serif text-4xl leading-tight tracking-tight md:text-5xl"
-        >
-          Classement
-        </h1>
-        <p className="mt-4 max-w-2xl text-lg text-muted-foreground">
-          Classement général de tous les pronostiqueurs. Mis à jour à la fin
-          de chaque match.
-        </p>
+        <div className="mx-auto max-w-3xl text-center">
+          <h1
+            id="leaderboard-title"
+            className="font-serif text-5xl leading-[1.05] tracking-tight md:text-7xl"
+          >
+            Classement
+          </h1>
+          <p className="mx-auto mt-6 max-w-3xl text-lg text-muted-foreground">
+            Classement général de tous les pronostiqueurs.
+            <br />
+            Mis à jour à la fin de chaque match.
+          </p>
+        </div>
       </Section>
 
       <Separator />
