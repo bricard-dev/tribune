@@ -16,8 +16,9 @@ type LimiterSpec = {
 };
 
 /**
- * In dev (no Upstash configured), this is a no-op limiter that always allows.
- * Outside dev, env validation guarantees Upstash is configured.
+ * Returns `null` when Upstash env vars are absent, in which case the limiter
+ * is a no-op that always allows. Env validation guarantees Upstash is set in
+ * Vercel production; local dev and preview tolerate its absence.
  */
 function buildLimiter(spec: LimiterSpec): Ratelimit | null {
   if (!redis) return null;
