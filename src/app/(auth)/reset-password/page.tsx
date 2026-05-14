@@ -24,10 +24,12 @@ export default async function ResetPasswordPage({
 
   if (error || !token) {
     return (
-      <main className="flex min-h-svh items-center justify-center px-4 py-12">
+      <main className="flex min-h-svh items-center justify-center bg-muted px-4 py-12">
         <Card className="w-full max-w-sm">
-          <CardHeader>
-            <CardTitle>Lien invalide</CardTitle>
+          <CardHeader className="text-center">
+            <CardTitle className="font-serif text-3xl tracking-tight">
+              Lien invalide
+            </CardTitle>
             <CardDescription>
               Ce lien de réinitialisation est expiré ou invalide.
             </CardDescription>
@@ -48,10 +50,12 @@ export default async function ResetPasswordPage({
   }
 
   return (
-    <main className="flex min-h-svh items-center justify-center px-4 py-12">
+    <main className="flex min-h-svh items-center justify-center bg-muted px-4 py-12">
       <Card className="w-full max-w-sm">
-        <CardHeader>
-          <CardTitle>Nouveau mot de passe</CardTitle>
+        <CardHeader className="text-center">
+          <CardTitle className="font-serif text-3xl tracking-tight">
+            Nouveau mot de passe
+          </CardTitle>
           <CardDescription>
             Choisis un nouveau mot de passe pour ton compte.
           </CardDescription>

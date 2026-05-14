@@ -12,10 +12,12 @@ export default async function SignInPage() {
   await requireGuest();
 
   return (
-    <main className="flex min-h-svh items-center justify-center px-4 py-12">
+    <main className="flex min-h-svh items-center justify-center bg-muted px-4 py-12">
       <Card className="w-full max-w-sm">
-        <CardHeader>
-          <CardTitle>Connexion</CardTitle>
+        <CardHeader className="text-center">
+          <CardTitle className="font-serif text-3xl tracking-tight">
+            Connexion
+          </CardTitle>
           <CardDescription>
             Connecte-toi avec ton email et ton mot de passe.
           </CardDescription>

@@ -12,10 +12,12 @@ export default async function SignUpPage() {
   await requireGuest();
 
   return (
-    <main className="flex min-h-svh items-center justify-center px-4 py-12">
+    <main className="flex min-h-svh items-center justify-center bg-muted px-4 py-12">
       <Card className="w-full max-w-sm">
-        <CardHeader>
-          <CardTitle>Créer un compte</CardTitle>
+        <CardHeader className="text-center">
+          <CardTitle className="font-serif text-3xl tracking-tight">
+            Créer un compte
+          </CardTitle>
           <CardDescription>
             Choisis un pseudo, il t&apos;identifiera dans le classement.
           </CardDescription>

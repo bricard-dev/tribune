@@ -15,10 +15,12 @@ export default async function VerifyEmailPage() {
   const initialCooldown = await getResendCooldownRemaining();
 
   return (
-    <main className="flex min-h-svh items-center justify-center px-4 py-12">
+    <main className="flex min-h-svh items-center justify-center bg-muted px-4 py-12">
       <Card className="w-full max-w-sm">
-        <CardHeader>
-          <CardTitle>Vérifie ton email</CardTitle>
+        <CardHeader className="text-center">
+          <CardTitle className="font-serif text-3xl tracking-tight">
+            Vérifie ton email
+          </CardTitle>
           <CardDescription>
             On a envoyé un lien de confirmation à{' '}
             <span className="text-foreground font-medium">{email}</span>. Clique
