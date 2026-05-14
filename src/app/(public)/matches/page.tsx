@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import { Section } from '@/components/section';
 import { Separator } from '@/components/ui/separator';
 import { prisma } from '@/lib/prisma';
+import { AnimatedDay } from './animated-day';
 import { PHASE_LABEL, STATUS_LABEL } from './content';
 
 export const metadata: Metadata = {
@@ -82,7 +83,7 @@ export default async function MatchesPage() {
         ) : (
           <div className="space-y-16">
           {[...byDay.entries()].map(([dayKey, dayMatches]) => (
-            <section key={dayKey} aria-labelledby={`day-${dayKey}`}>
+            <AnimatedDay key={dayKey} labelledBy={`day-${dayKey}`}>
               <h2
                 id={`day-${dayKey}`}
                 className="font-serif text-xl tracking-tight md:text-2xl"
@@ -183,7 +184,7 @@ export default async function MatchesPage() {
                   );
                 })}
               </ul>
-            </section>
+            </AnimatedDay>
           ))}
           </div>
         )}

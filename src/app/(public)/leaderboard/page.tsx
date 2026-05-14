@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import { Section } from '@/components/section';
 import { Separator } from '@/components/ui/separator';
 import { prisma } from '@/lib/prisma';
+import { AnimatedLeaderboard } from './animated-leaderboard';
 
 export const metadata: Metadata = {
   title: 'Classement — Tribune',
@@ -80,6 +81,7 @@ export default async function LeaderboardPage() {
             Le classement apparaîtra dès le premier match terminé.
           </p>
         ) : (
+          <AnimatedLeaderboard>
           <ol className="overflow-hidden rounded-lg border">
             <li className="grid grid-cols-[3rem_1fr_5rem_5rem] gap-4 border-b bg-muted/50 px-4 py-3 text-xs font-medium uppercase tracking-wide text-muted-foreground">
               <span>Rang</span>
@@ -105,6 +107,7 @@ export default async function LeaderboardPage() {
               </li>
             ))}
           </ol>
+          </AnimatedLeaderboard>
         )}
       </Section>
     </>
