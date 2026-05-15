@@ -24,7 +24,7 @@ export function CountUp({ value, duration = 2 }: CountUpProps) {
     if (!inView) return;
     const controls = animate(count, value, {
       duration,
-      ease: [0.05, 0.8, 0.2, 1],
+      ease: [0.65, 0, 0.35, 1],
     });
     return () => controls.stop();
   }, [inView, value, duration, count]);

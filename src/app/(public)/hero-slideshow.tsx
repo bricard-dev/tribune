@@ -21,7 +21,12 @@ export function HeroSlideshow({ images, intervalMs = 5000 }: Props) {
   }, [images.length, intervalMs]);
 
   return (
-    <div className="relative aspect-4/5 w-full overflow-hidden rounded-lg bg-muted">
+    <motion.div
+      initial={{ opacity: 0, y: 24 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1], delay: 0.2 }}
+      className="relative aspect-4/5 w-full overflow-hidden rounded-lg bg-muted"
+    >
       <AnimatePresence>
         <motion.div
           key={images[index]}
@@ -41,6 +46,6 @@ export function HeroSlideshow({ images, intervalMs = 5000 }: Props) {
           />
         </motion.div>
       </AnimatePresence>
-    </div>
+    </motion.div>
   );
 }

@@ -9,8 +9,6 @@ export type Step = {
   icon: StepIcon;
   title: string;
   body: string;
-  detail: string;
-  hint: string;
 };
 
 export type ScoringRow = {
@@ -35,33 +33,24 @@ export type RankingRow = {
 export const stats: Stat[] = [
   { value: '104', label: 'Matches à pronostiquer' },
   { value: '5', label: 'Points max par match' },
-  { value: '1', label: 'Tribune. Un seul classement.' },
+  { value: '1', label: 'Tribune' },
 ];
 
 export const steps: Step[] = [
   {
     icon: 'pencil',
-    title: 'Choisis ton score',
-    body: 'Avant chaque match, indique le score que tu prévois pour l’équipe domicile et l’extérieur.',
-    detail:
-      'Pas de pari sur l’issue seule : c’est un vrai score, buts pour buts. Tu peux pronostiquer jusqu’aux 104 rencontres de la compétition, des matches de groupes à la finale.',
-    hint: 'Un pronostic oublié = 0 point. Pense à passer un coup d’œil avant chaque journée.',
+    title: 'Saisir un pronostic',
+    body: 'Pour chaque match, soumettez un score précis pour les deux équipes. Les matches de groupes sont ouverts dès le lancement ; chaque tour à élimination directe est publié dès que les équipes sont connues.',
   },
   {
     icon: 'lock',
     title: 'Verrouillage au coup d’envoi',
-    body: 'Tu peux modifier ton pronostic autant que tu veux jusqu’au coup d’envoi. Après, il est figé.',
-    detail:
-      'À la seconde où l’arbitre siffle le début du match, ton pronostic est verrouillé côté serveur. Plus de modification possible, même en cas de blessure de dernière minute ou de composition surprise.',
-    hint: 'Astuce : ajuste tes pronos jusqu’à la dernière minute si la compo officielle change la donne.',
+    body: 'Les pronostics restent modifiables jusqu’au coup d’envoi. Passé cet instant, ils sont définitivement scellés.',
   },
   {
     icon: 'trophy',
-    title: 'Marque des points',
-    body: 'Score exact, bon écart, ou simplement bon vainqueur — chaque réussite rapporte. Voir le barème ci-dessous.',
-    detail:
-      'Le classement se met à jour automatiquement dès le coup de sifflet final. Les matches à élimination directe valent le double : autant dire que la fin de compétition peut tout renverser.',
-    hint: 'En cas d’égalité, on départage au nombre de scores exacts, puis aux bons vainqueurs.',
+    title: 'Décompte des points',
+    body: 'Les points sont attribués selon le barème à la fin de chaque match et le classement est mis à jour automatiquement.',
   },
 ];
 

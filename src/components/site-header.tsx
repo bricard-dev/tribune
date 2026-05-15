@@ -1,4 +1,5 @@
 import { Container } from '@/components/container';
+import { MobileNav } from '@/components/mobile-nav';
 import { Button } from '@/components/ui/button';
 import { getCurrentUser } from '@/lib/auth-helpers';
 import Link from 'next/link';
@@ -42,7 +43,7 @@ export async function SiteHeader() {
 
           <span aria-hidden className="hidden h-6 w-px bg-border md:block" />
 
-          <div className="flex items-center gap-2">
+          <div className="hidden items-center gap-2 md:flex">
             {user ? (
               <Button asChild variant="ghost" size="sm">
                 <Link href="/profile">Mon profil</Link>
@@ -58,6 +59,8 @@ export async function SiteHeader() {
               </>
             )}
           </div>
+
+          <MobileNav items={navItems} isAuthenticated={!!user} />
         </div>
       </Container>
     </header>

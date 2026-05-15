@@ -15,6 +15,7 @@ type TicketProps = {
   points: number;
   rotate?: number;
   className?: string;
+  circleScore?: boolean;
 };
 
 function EyebrowRow({ label, value }: { label: string; value: string }) {
@@ -40,13 +41,14 @@ export function Ticket({
   points,
   rotate = 0,
   className,
+  circleScore = false,
 }: TicketProps) {
   return (
     <motion.div
-      initial={{ opacity: 0, y: 16 }}
+      initial={{ opacity: 0, y: 24 }}
       whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, amount: 0.25 }}
-      transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+      viewport={{ once: true, amount: 0.4 }}
+      transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1], delay: 0.2 }}
       style={{
         filter:
           'drop-shadow(0 1px 1px rgba(0,0,0,0.04)) drop-shadow(0 4px 8px rgba(0,0,0,0.06))',
@@ -102,17 +104,44 @@ export function Ticket({
             </span>
             <span className="mt-1 text-2xl tabular-nums">{result}</span>
           </div>
-          <div className="flex flex-col items-end justify-center">
+          <div className="relative flex flex-col items-end justify-center">
             <span className="text-[10px] uppercase tracking-[0.18em] text-muted-foreground">
               Score
             </span>
-            <span className="mt-1 text-2xl tabular-nums">
+            <span className="relative mt-1 text-2xl tabular-nums">
               {points}
               <span className="ml-1 text-xs text-muted-foreground">pts</span>
             </span>
           </div>
         </div>
       </div>
+      {circleScore && (
+        <motion.svg
+          aria-hidden
+          viewBox="0 0 200 100"
+          preserveAspectRatio="none"
+          className="pointer-events-none absolute -right-3 -bottom-1 h-24 w-28 -rotate-6 text-primary"
+        >
+          <motion.path
+            d="M 100,10 C 150,10 190,40 188,60 C 184,90 130,96 80,92 C 30,86 10,60 14,40 C 22,16 70,6 130,12 C 170,18 188,32 190,48"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth={6}
+            strokeLinecap="round"
+            initial={{ pathLength: 0, opacity: 0 }}
+            whileInView={{ pathLength: 1, opacity: 1 }}
+            viewport={{ once: true, amount: 0.6 }}
+            transition={{
+              pathLength: {
+                duration: 0.9,
+                ease: [0.22, 1, 0.36, 1],
+                delay: 0.6,
+              },
+              opacity: { duration: 0, delay: 0.6 },
+            }}
+          />
+        </motion.svg>
+      )}
     </motion.div>
   );
 }
